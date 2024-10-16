@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - ML Text Processing{% endblock %}
+
+{% block content %}
+    <h1>Оценка отзывов</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="input_text" rows="6" cols="60" placeholder="Введите ваш текст здесь">{{ input_text }}</textarea><br>
+        <input type="submit" value="Обработать">
+    </form>
+
+    {% if sentiment %}
+    <div class="result">
+        <h2>Результат обработки:</h2>
+        <p><strong>Сентимент:</strong> {{ sentiment }}</p>
+        {% if score %}
+            <p><strong>Оценка:</strong> {{ score }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}
